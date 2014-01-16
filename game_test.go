@@ -10,16 +10,16 @@ func TestGameUpdateScore(t *testing.T) {
 
 	g.UpdateScore(1, 2)
 
-	if g.P1Score != 1 {
-		t.Error(fmt.Sprintf("P1 score should be 1 but was %d", g.P1Score))
+	if g.P1Score() != 1 {
+		t.Error(fmt.Sprintf("P1 score should be 1 but was %d", g.P1Score()))
 	}
 
-	if g.P2Score != 2 {
-		t.Error(fmt.Sprintf("P2 score should be 2 but was %d", g.P2Score))
+	if g.P2Score() != 2 {
+		t.Error(fmt.Sprintf("P2 score should be 2 but was %d", g.P2Score()))
 	}
 
-	if g.CurrentServer != 1 {
-		t.Error(fmt.Sprintf("Current server should be 1 but was %d", g.CurrentServer))
+	if g.CurrentServer() != 1 {
+		t.Error(fmt.Sprintf("Current server should be 1 but was %d", g.CurrentServer()))
 	}
 }
 
@@ -29,8 +29,8 @@ func TestGameCurrentServerAdvances(t *testing.T) {
 	g.UpdateScore(1, 0)
 	g.UpdateScore(1, 1)
 
-	if g.CurrentServer != 2 {
-		t.Error(fmt.Sprintf("Current server should be 2 but was %d", g.CurrentServer))
+	if g.CurrentServer() != 2 {
+		t.Error(fmt.Sprintf("Current server should be 2 but was %d", g.CurrentServer()))
 	}
 }
 
@@ -80,20 +80,20 @@ func TestGameRestart(t *testing.T) {
 
 	g.Restart(1)
 
-	if g.P1Score != 0 {
+	if g.P1Score() != 0 {
 		t.Error("P1 score was not reset")
 	}
 
-	if g.P2Score != 0 {
+	if g.P2Score() != 0 {
 		t.Error("P2 score was not reset")
 	}
 
-	if g.CurrentServer != 1 {
+	if g.CurrentServer() != 1 {
 		t.Error("Server was not reset to player 1")
 	}
 
 	g.Restart(2)
-	if g.CurrentServer != 2 {
+	if g.CurrentServer() != 2 {
 		t.Error("Server was not reset to player 2")
 	}
 }
